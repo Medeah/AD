@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountSort", "CountSort\Coun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heapsort", "Heapsort\Heapsort.csproj", "{1882F15D-3230-4CF6-AE1B-507DDABE9CE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTable", "HashTable\HashTable.csproj", "{9C902FAE-BA47-49AB-9B37-CF3350BAA9E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1882F15D-3230-4CF6-AE1B-507DDABE9CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1882F15D-3230-4CF6-AE1B-507DDABE9CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1882F15D-3230-4CF6-AE1B-507DDABE9CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C902FAE-BA47-49AB-9B37-CF3350BAA9E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C902FAE-BA47-49AB-9B37-CF3350BAA9E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C902FAE-BA47-49AB-9B37-CF3350BAA9E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C902FAE-BA47-49AB-9B37-CF3350BAA9E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
