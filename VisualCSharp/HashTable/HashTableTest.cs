@@ -1,4 +1,34 @@
-﻿using System;
+﻿// DictionaryTest from mono modified to me needs
+//
+// Authors:
+// Sureshkumar T (tsureshkumar@novell.com)
+// Ankit Jain (radical@corewars.org)
+// David Waite (mass@akuma.org)
+//
+// Copyright (C) 2004 Novell, Inc (http://www.novell.com)
+// Copyright (C) 2005 David Waite (mass@akuma.org)
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -150,7 +180,7 @@ namespace HashTable
             Assert.AreEqual(3, _dictionary.Count);
             Assert.IsFalse(_dictionary.ContainsKey("key3"));
         }
-        [Ignore("Pending")]
+
         [Test]
         public void RemoveTest2()
         {
@@ -163,7 +193,7 @@ namespace HashTable
             _dictionary2.Remove(m1); // m2 is in rehash path
             Assert.AreEqual(20, _dictionary2[m2].Value, "#4");
         }
-        [Ignore("Pending")][Test]
+        [Test]
         [Category("NotWorking")]
         public void Remove_ZeroOut()
         {
@@ -181,7 +211,7 @@ namespace HashTable
             Assert.IsNull(wrKey.Target, "#1");
             Assert.IsNull(wrValue.Target, "#2");
         }
-        [Ignore("Pending")][Test, ExpectedException(typeof(ArgumentNullException))]
+        [Test, ExpectedException(typeof(ArgumentNullException))]
         public void IndexerSetNullTest()
         {
             _dictionary[null] = "bar";
@@ -197,7 +227,7 @@ namespace HashTable
             Assert.AreEqual(0, _dictionary.Count, "Clear method failed!");
             Assert.IsFalse(_dictionary.ContainsKey("key2"));
         }
-        [Ignore("Pending")][Test] // bug 432441
+        [Test] // bug 432441
         public void Clear_Iterators()
         {
             HashTable<object, object> d = new HashTable<object, object>();
@@ -209,7 +239,7 @@ namespace HashTable
                 hash += o.GetHashCode();
             }
         }
-        [Ignore("Pending")][Test]
+        [Test]
         [Category("NotWorking")]
         public void Clear_ZeroOut()
         {
@@ -227,7 +257,7 @@ namespace HashTable
             Assert.IsNull(wrKey.Target, "#1");
             Assert.IsNull(wrValue.Target, "#2");
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void ContainsKeyTest()
         {
             _dictionary.Add("key1", "value1");
@@ -239,13 +269,13 @@ namespace HashTable
             contains = _dictionary.ContainsKey("key5");
             Assert.IsFalse(contains, "ContainsKey for non existant does not return correct value!");
         }
-        [Ignore("Pending")][Test, ExpectedException(typeof(ArgumentNullException))]
+        [Test, ExpectedException(typeof(ArgumentNullException))]
         public void ContainsKeyTest2()
         {
             _dictionary.ContainsKey(null);
         }
         
-        [Ignore("Pending")][Test]
+        [Test]
         public void TryGetValueTest()
         {
             _dictionary.Add("key1", "value1");
@@ -260,7 +290,7 @@ namespace HashTable
             Assert.IsFalse(retrieved);
             Assert.IsNull(value, "value for non existant value should be null!");
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void ValueTypeTest()
         {
             HashTable<int, float> dict = new HashTable<int, float>();
@@ -289,7 +319,7 @@ namespace HashTable
                 myt.RollNo.Equals(this.RollNo);
             }
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void ObjectAsKeyTest()
         {
             HashTable<object, object> dict = new HashTable<object, object>();
@@ -311,7 +341,7 @@ namespace HashTable
             iDict.Add(12, "value");
             iDict.Add("key", 34);
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void IEnumeratorTest()
         {
             _dictionary.Add("key1", "value1");
@@ -327,7 +357,7 @@ namespace HashTable
             }
             Assert.AreEqual("value4", _dictionary["key4"].ToString(), "");
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void IEnumeratorGenericTest()
         {
             _dictionary.Add("key1", "value1");
@@ -379,7 +409,7 @@ namespace HashTable
                 i++;
             Assert.AreEqual(4, i, "fail3: foreach entry failed!");
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void ResizeTest()
         {
             HashTable<string, object> dictionary = new HashTable<string, object>(3);
@@ -394,7 +424,7 @@ namespace HashTable
             Assert.AreEqual("value4", dictionary["key4"].ToString(), "");
             Assert.AreEqual("value3", dictionary["key3"].ToString(), "");
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void KeyCollectionTest()
         {
             _dictionary.Add("key1", "value1");
@@ -410,7 +440,7 @@ namespace HashTable
             }
             Assert.AreEqual(4, i);
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void KeyValueEnumeratorTest()
         {
             IDictionary<int, int> d = new HashTable<int, int>();
@@ -438,7 +468,7 @@ namespace HashTable
                     Assert.Fail("Reading a value appears to trash enumerator state");
             }
         }
-        ////[Ignore("Pending")][Test] // bug 75073
+        //[Ignore("Pending")][Test] // bug 75073
         //public void SliceCollectionsEnumeratorTest()
         //{
         //    HashTable<string, int> values = new HashTable<string, int>();
@@ -459,7 +489,7 @@ namespace HashTable
             Assert.AreEqual(typeof(KeyValuePair<string, object>), ((IDictionaryEnumerator)enumerator).Current.GetType(), "#4");
             Assert.AreEqual(typeof(KeyValuePair<string, object>), ((object)enumerator.Current).GetType(), "#5");
         }
-        [Ignore("Pending")][Test, ExpectedException(typeof(InvalidOperationException))]
+        [Test, ExpectedException(typeof(InvalidOperationException))]
         public void FailFastTest1()
         {
             HashTable<int, int> d = new HashTable<int, int>();
@@ -501,7 +531,7 @@ namespace HashTable
             }
             Assert.Fail("Should not be reached");
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void SerializationTest()
         {
             for (int i = 0; i < 50; i++)

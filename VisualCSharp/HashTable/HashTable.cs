@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HashTable
 {
+    [Serializable]
     public class HashTable<T, U> : IDictionary<T, U>
     {
 
@@ -119,19 +120,23 @@ namespace HashTable
 
         public ICollection<T> Keys
         {
-            get { throw new NotImplementedException(); }
+            get { return this.Select(x => x.Key).ToList(); }
         }
-
-        
 
         public bool TryGetValue(T key, out U value)
         {
-            throw new NotImplementedException();
+            if (ContainsKey(key))
+            {
+                value = this[key];
+                return true;
+            }
+            value = default(U);
+            return false;
         }
 
         public ICollection<U> Values
         {
-            get { throw new NotImplementedException(); }
+            get { return this.Select(x => x.Value).ToList(); }
         }
 
         
@@ -175,12 +180,17 @@ namespace HashTable
 
         public IEnumerator<KeyValuePair<T, U>> GetEnumerator()
         {
+            var size = count;
             for (int i = 0; i < cap; i++)
             {
                 if (data[i] != null)
 	            {
                     foreach (var item in data[i])
                     {
+                        if (count != size)
+                        {
+                            throw new InvalidOperationException();
+                        }
                         yield return item;
                     }
 	            }
@@ -190,10 +200,10 @@ namespace HashTable
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
-
+    [Serializable]
     public class LinkedList<T, U>
     {
         private Link<T, U> head;
@@ -239,6 +249,7 @@ namespace HashTable
                     curr.Next = curr.Next.Next;
                     return true;
 	            }
+                curr = curr.Next;
             }
 
             return false;
@@ -268,7 +279,7 @@ namespace HashTable
             return false;
         }
     }
-
+    [Serializable]
     public class Link<T, U>
     {
         public Link(T key, U value)
