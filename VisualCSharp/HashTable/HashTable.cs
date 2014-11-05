@@ -155,7 +155,15 @@ namespace HashTable
 
         public bool Contains(KeyValuePair<T, U> item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Search(item.Key).Equals(item.Value);
+                
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public void CopyTo(KeyValuePair<T, U>[] array, int arrayIndex)
@@ -175,7 +183,19 @@ namespace HashTable
 
         public bool Remove(KeyValuePair<T, U> item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (Search(item.Key).Equals(item.Value))
+                {
+                    return Remove(item.Key);
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
         public IEnumerator<KeyValuePair<T, U>> GetEnumerator()
@@ -272,7 +292,8 @@ namespace HashTable
             {
                 if (x.Pair.Key.Equals(key))
                 {
-                    x.Pair = new KeyValuePair<T, U>(key, value);
+                    var old = x.Pair.Key;
+                    x.Pair = new KeyValuePair<T, U>(old, value);
                     return true;
                 }
             }

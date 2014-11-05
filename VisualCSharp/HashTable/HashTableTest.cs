@@ -584,7 +584,7 @@ namespace HashTable
         //    {
         //    }
         //}
-        [Ignore("Pending")][Test]
+        [Test]
         public void Empty_KeysValues_CopyTo()
         {
             HashTable<int, int> d = new HashTable<int, int>();
@@ -675,7 +675,7 @@ namespace HashTable
         //    Assert.IsNull(d[2]);
         //    Assert.IsNull(d["foo"]);
         //}
-        [Ignore("Pending")][Test] // bug #332534
+        [Test] // bug #332534
         public void Dictionary_MoveNext()
         {
             HashTable<int, int> a = new HashTable<int, int>();
@@ -699,7 +699,7 @@ namespace HashTable
         //    Assert.IsTrue(list.Contains("singe"), "singe");
         //    Assert.IsTrue(list.Contains("mono"), "mono");
         //}
-        [Ignore("Pending")][Test]
+        [Test]
         public void KeyObjectMustNotGetChangedIfKeyAlreadyExists()
         {
             HashTable<String, int> d = new HashTable<string, int>();
@@ -712,7 +712,7 @@ namespace HashTable
                 comp = s;
             Assert.IsTrue(Object.ReferenceEquals(s1, comp));
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void ResetKeysEnumerator()
         {
             HashTable<string, string> test = new HashTable<string, string>();
@@ -728,7 +728,7 @@ namespace HashTable
             Assert.IsTrue(enumerator.MoveNext());
             Assert.IsFalse(enumerator.MoveNext());
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void ResetValuesEnumerator()
         {
             HashTable<string, string> test = new HashTable<string, string>();
@@ -760,7 +760,7 @@ namespace HashTable
         //    Assert.IsTrue(enumerator.MoveNext());
         //    Assert.IsFalse(enumerator.MoveNext());
         //}
-        [Ignore("Pending")][Test]
+        [Test]
         public void ICollectionOfKeyValuePairContains()
         {
             var dictionary = new HashTable<string, int>();
@@ -772,7 +772,7 @@ namespace HashTable
             Assert.IsFalse(collection.Contains(new KeyValuePair<string, int>("foo", 13)));
             Assert.IsTrue(collection.Contains(new KeyValuePair<string, int>("foo", 42)));
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void ICollectionOfKeyValuePairRemove()
         {
             var dictionary = new HashTable<string, int>();
@@ -834,7 +834,7 @@ namespace HashTable
             var array = new int[1];
             collection.CopyTo(array, 0);
         }
-        [Ignore("Pending")][Test]
+        [Test]
         public void ValuesCopyToObjectArray()
         {
             var dictionary = new HashTable<string, string> { { "foo", "bar" } };
