@@ -53,7 +53,7 @@ public class RedBlackTreeTest
         Assert.Equal(1, t[1]);
     }
 
-    [Fact(Skip = "reason")]
+    [Fact]
     public void DeleteNullTest()
     {
         Assert.Throws<ArgumentNullException>(
@@ -123,7 +123,7 @@ public class RedBlackTreeTest
         Assert.Equal(1, t.Predecessor(2).Key);
     }
 
-    [Fact(Skip = "reason")]
+    [Fact]
     public void InvalidOperationsTest()
     {
         Assert.Throws<InvalidOperationException>(
@@ -139,7 +139,18 @@ public class RedBlackTreeTest
            });
     }
 
-    [Fact(Skip = "reason")]
+    [Fact]
+    public void Indexing()
+    {
+        t[1] = 42;
+        t[2] = 2;
+        Assert.Equal(42, t[1]);
+        t[1] = 10;
+        Assert.Equal(10, t[1]);
+
+    }
+
+    [Fact]
     public void KeyNotFoundTest()
     {
         t.Insert(2, 42);
@@ -159,39 +170,46 @@ public class RedBlackTreeTest
            {
                var x = t[1];
            });
-        Assert.Throws<KeyNotFoundException>(
+    }
+
+    [Fact]
+    public void InsertDuplicate()
+    {
+        t.Insert(1, 1);
+        Assert.Throws<ArgumentException>(
            delegate
            {
-               t[1] = 2;
+               t.Insert(1, 1);
            });
     }
 
-    [Fact(Skip = "reason")]
+    [Fact]
     public void MegaTest()
     {
         Random rng = new Random();
         for (int i = 0; i < 50; i++)
         {
-            t.Insert(rng.Next(25, 75), rng.Next(25, 75));
+            t[rng.Next(25, 75)] = rng.Next(25, 75);
         }
         t.Insert(1, 1);
         for (int i = 0; i < 50; i++)
         {
             var num = rng.Next(25, 75);
-            t.Insert(num, num);
+            t[num] = num;
         }
-        t.Insert(50, 50);
+        
         for (int i = 0; i < 50; i++)
         {
-            t.Insert(rng.Next(25, 75), rng.Next(0, 1000));
+            t[rng.Next(25, 75)] = rng.Next(-100, 200);
         }
         t.Insert(100, 100);
         for (int i = 0; i < 50; i++)
         {
-            t.Insert(rng.Next(25, 75), 42);
+            t[rng.Next(25, 75)] = 42;
         }
-        //Assert.Equal(1, t.Minimum().Key);
-        //Assert.Equal(100, t.Maximum().Key);
-        //Assert.Equal(1, t[50]);
+        t[50] = 1;
+        Assert.Equal(1, t.Minimum().Key);
+        Assert.Equal(100, t.Maximum().Key);
+        Assert.Equal(1, t[50]);
     }
 }

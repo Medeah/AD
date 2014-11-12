@@ -11,11 +11,11 @@ namespace RedBlackTree
         static void Main(string[] args)
         {
             var test = new Dictionary<int, int>();
-            Console.WriteLine(test[1]);
-            Console.ReadLine();
+            //test.Add(1, 1);
+            //test.Add(1, 1);
         }
     }
-    //TODO KeyNotFoundException
+
     class RedBlackTree<T, U> : ISortedDictionary<T, U> where
         T : IComparable<T>
     {
@@ -31,7 +31,8 @@ namespace RedBlackTree
             public Node Right;
             public T Key;
             public U Value;
-            public KeyValuePair<T, U> toKeyValue() {
+            public KeyValuePair<T, U> toKeyValue()
+            {
                 return new KeyValuePair<T, U>(Key, Value);
             }
         }
@@ -54,8 +55,14 @@ namespace RedBlackTree
                 if (z.Key.CompareTo(x.Key) < 0)
                 {
                     x = x.Left;
-                } else {
+                }
+                else if (z.Key.CompareTo(x.Key) > 0)
+                {
                     x = x.Right;
+                }
+                else
+                {
+                    throw new ArgumentException("An item with the same key has already been added.");
                 }
             }
             z.P = y;
@@ -71,10 +78,11 @@ namespace RedBlackTree
             {
                 y.Right = z;
             }
-
         }
+       
 
-        private void Transplant(Node u, Node v) {
+        private void Transplant(Node u, Node v)
+        {
             if (u.P == null)
             {
                 root = v;
@@ -105,7 +113,7 @@ namespace RedBlackTree
             }
             else
             {
-                var y = TreeMinimum(z.Right); 
+                var y = TreeMinimum(z.Right);
                 if (y.P != z)
                 {
                     Transplant(y, y.Right);
@@ -120,6 +128,10 @@ namespace RedBlackTree
 
         public void Delete(T key)
         {
+            if (key == null)
+            {
+                throw new ArgumentNullException();
+            }
             var res = TreeSearch(root, key);
             if (res != null)
             {
@@ -131,21 +143,21 @@ namespace RedBlackTree
             }
         }
 
-        private Node TreeSearch(Node x, T key)
+        private Node TreeSearch(Node root, T key)
         {
-            if (x == null)
+            if (root == null)
             {
                 return null;
             }
-            if (x.Key.CompareTo(key) == 0)
+            if (root.Key.CompareTo(key) == 0)
             {
-                return x;
+                return root;
             }
-            if (x.Key.CompareTo(key) > 0)
+            if (root.Key.CompareTo(key) > 0)
             {
-                return TreeSearch(x.Left, key);
+                return TreeSearch(root.Left, key);
             }
-            return TreeSearch(x.Right, key);
+            return TreeSearch(root.Right, key);
         }
 
         public KeyValuePair<T, U>? Search(T key)
@@ -245,7 +257,6 @@ namespace RedBlackTree
 
         public KeyValuePair<T, U> Maximum()
         {
-
             if (root == null)
             {
                 throw new InvalidOperationException();
@@ -266,7 +277,15 @@ namespace RedBlackTree
             }
             set
             {
-                throw new NotImplementedException();
+                var res = TreeSearch(root, key);
+                if (res == null)
+                {
+                    Insert(key, value);
+                }
+                else
+                {
+                    res.Value = value;
+                }
             }
         }
     }
