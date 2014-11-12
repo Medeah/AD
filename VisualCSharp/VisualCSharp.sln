@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTable", "HashTable\Hash
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBlackTree", "RedBlackTree\RedBlackTree.csproj", "{05CBF632-253C-45FB-A058-728B01EA66D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hashing", "Hashing\Hashing.csproj", "{937B0612-6452-4217-9DDB-AF7AE5E005F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contravariance", "Contravariance\Contravariance.csproj", "{3FB4634F-BCD5-4885-843F-DCF53D3FC1AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{05CBF632-253C-45FB-A058-728B01EA66D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05CBF632-253C-45FB-A058-728B01EA66D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05CBF632-253C-45FB-A058-728B01EA66D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{937B0612-6452-4217-9DDB-AF7AE5E005F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{937B0612-6452-4217-9DDB-AF7AE5E005F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{937B0612-6452-4217-9DDB-AF7AE5E005F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{937B0612-6452-4217-9DDB-AF7AE5E005F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB4634F-BCD5-4885-843F-DCF53D3FC1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB4634F-BCD5-4885-843F-DCF53D3FC1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB4634F-BCD5-4885-843F-DCF53D3FC1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB4634F-BCD5-4885-843F-DCF53D3FC1AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
