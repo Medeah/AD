@@ -330,17 +330,17 @@ namespace HashTable
             Assert.AreEqual("value2", dict[key2], "value is not returned!");
             Assert.AreEqual("value3", dict[key3], "neg: exception should not be thrown!");
         }
-        [Ignore("Pending")][Test, ExpectedException(typeof(ArgumentException))]
-        public void IDictionaryAddTest()
-        {
-            IDictionary iDict = _dictionary as IDictionary;
-            iDict.Add("key1", "value1");
-            iDict.Add("key2", "value3");
-            Assert.AreEqual(2, iDict.Count, "IDictioanry interface add is not working!");
-            //Negative test case
-            iDict.Add(12, "value");
-            iDict.Add("key", 34);
-        }
+        //[Ignore("Pending")][Test, ExpectedException(typeof(ArgumentException))]
+        //public void IDictionaryAddTest()
+        //{
+        //    IDictionary iDict = _dictionary as IDictionary;
+        //    iDict.Add("key1", "value1");
+        //    iDict.Add("key2", "value3");
+        //    Assert.AreEqual(2, iDict.Count, "IDictioanry interface add is not working!");
+        //    //Negative test case
+        //    iDict.Add(12, "value");
+        //    iDict.Add("key", 34);
+        //}
         [Test]
         public void IEnumeratorTest()
         {
@@ -373,42 +373,42 @@ namespace HashTable
             }
             Assert.AreEqual("value4", _dictionary["key4"].ToString(), "");
         }
-        [Ignore("Pending")][Test]
-        public void IDictionaryEnumeratorTest()
-        {
-            _dictionary.Add("key1", "value1");
-            _dictionary.Add("key2", "value2");
-            _dictionary.Add("key3", "value3");
-            _dictionary.Add("key4", "value4");
-            IDictionaryEnumerator itr = ((IDictionary)_dictionary).GetEnumerator();
-            while (itr.MoveNext())
-            {
-                object o = itr.Current;
-                Assert.AreEqual(typeof(DictionaryEntry), o.GetType(), "Current should return a type of DictionaryEntry");
-                DictionaryEntry entry = (DictionaryEntry)itr.Current;
-            }
-            Assert.AreEqual("value4", _dictionary["key4"].ToString(), "");
-        }
-        [Ignore("Pending")][Test]
-        public void ForEachTest()
-        {
-            _dictionary.Add("key1", "value1");
-            _dictionary.Add("key2", "value2");
-            _dictionary.Add("key3", "value3");
-            _dictionary.Add("key4", "value4");
-            int i = 0;
-            foreach (KeyValuePair<string, object> entry in _dictionary)
-                i++;
-            Assert.AreEqual(4, i, "fail1: foreach entry failed!");
-            i = 0;
-            foreach (KeyValuePair<string, object> entry in ((IEnumerable)_dictionary))
-                i++;
-            Assert.AreEqual(4, i, "fail2: foreach entry failed!");
-            i = 0;
-            foreach (DictionaryEntry entry in ((IDictionary)_dictionary))
-                i++;
-            Assert.AreEqual(4, i, "fail3: foreach entry failed!");
-        }
+        //[Ignore("Pending")][Test]
+        //public void IDictionaryEnumeratorTest()
+        //{
+        //    _dictionary.Add("key1", "value1");
+        //    _dictionary.Add("key2", "value2");
+        //    _dictionary.Add("key3", "value3");
+        //    _dictionary.Add("key4", "value4");
+        //    IDictionaryEnumerator itr = ((IDictionary)_dictionary).GetEnumerator();
+        //    while (itr.MoveNext())
+        //    {
+        //        object o = itr.Current;
+        //        Assert.AreEqual(typeof(DictionaryEntry), o.GetType(), "Current should return a type of DictionaryEntry");
+        //        DictionaryEntry entry = (DictionaryEntry)itr.Current;
+        //    }
+        //    Assert.AreEqual("value4", _dictionary["key4"].ToString(), "");
+        //}
+        //[Ignore("Pending")][Test]
+        //public void ForEachTest()
+        //{
+        //    _dictionary.Add("key1", "value1");
+        //    _dictionary.Add("key2", "value2");
+        //    _dictionary.Add("key3", "value3");
+        //    _dictionary.Add("key4", "value4");
+        //    int i = 0;
+        //    foreach (KeyValuePair<string, object> entry in _dictionary)
+        //        i++;
+        //    Assert.AreEqual(4, i, "fail1: foreach entry failed!");
+        //    i = 0;
+        //    foreach (KeyValuePair<string, object> entry in ((IEnumerable)_dictionary))
+        //        i++;
+        //    Assert.AreEqual(4, i, "fail2: foreach entry failed!");
+        //    i = 0;
+        //    foreach (DictionaryEntry entry in ((IDictionary)_dictionary))
+        //        i++;
+        //    Assert.AreEqual(4, i, "fail3: foreach entry failed!");
+        //}
         [Test]
         public void ResizeTest()
         {
@@ -477,18 +477,18 @@ namespace HashTable
         //    Assert.IsTrue(ke is HashTable<string, int>.KeyCollection.Enumerator);
         //    Assert.IsTrue(ve is HashTable<string, int>.ValueCollection.Enumerator);
         //}
-        [Ignore("Pending")][Test]
-        public void PlainEnumeratorReturnTest()
-        {
-            // Test that we return a KeyValuePair even for non-generic dictionary iteration
-            _dictionary["foo"] = "bar";
-            IEnumerator<KeyValuePair<string, object>> enumerator = _dictionary.GetEnumerator();
-            Assert.IsTrue(enumerator.MoveNext(), "#1");
-            Assert.AreEqual(typeof(KeyValuePair<string, object>), ((IEnumerator)enumerator).Current.GetType(), "#2");
-            Assert.AreEqual(typeof(DictionaryEntry), ((IDictionaryEnumerator)enumerator).Entry.GetType(), "#3");
-            Assert.AreEqual(typeof(KeyValuePair<string, object>), ((IDictionaryEnumerator)enumerator).Current.GetType(), "#4");
-            Assert.AreEqual(typeof(KeyValuePair<string, object>), ((object)enumerator.Current).GetType(), "#5");
-        }
+        //[Ignore("Pending")][Test]
+        //public void PlainEnumeratorReturnTest()
+        //{
+        //    // Test that we return a KeyValuePair even for non-generic dictionary iteration
+        //    _dictionary["foo"] = "bar";
+        //    IEnumerator<KeyValuePair<string, object>> enumerator = _dictionary.GetEnumerator();
+        //    Assert.IsTrue(enumerator.MoveNext(), "#1");
+        //    Assert.AreEqual(typeof(KeyValuePair<string, object>), ((IEnumerator)enumerator).Current.GetType(), "#2");
+        //    Assert.AreEqual(typeof(DictionaryEntry), ((IDictionaryEnumerator)enumerator).Entry.GetType(), "#3");
+        //    Assert.AreEqual(typeof(KeyValuePair<string, object>), ((IDictionaryEnumerator)enumerator).Current.GetType(), "#4");
+        //    Assert.AreEqual(typeof(KeyValuePair<string, object>), ((object)enumerator.Current).GetType(), "#5");
+        //}
         [Test, ExpectedException(typeof(InvalidOperationException))]
         public void FailFastTest1()
         {
@@ -503,34 +503,34 @@ namespace HashTable
             }
             Assert.Fail("Should not be reached");
         }
-        [Ignore("Pending")][Test, ExpectedException(typeof(InvalidOperationException))]
-        public void FailFastTest2()
-        {
-            HashTable<int, int> d = new HashTable<int, int>();
-            d[1] = 1;
-            int count = 0;
-            foreach (int i in d.Keys)
-            {
-                d[i + 1] = i + 1;
-                if (count++ != 0)
-                    Assert.Fail("Should not be reached");
-            }
-            Assert.Fail("Should not be reached");
-        }
-        [Ignore("Pending")][Test, ExpectedException(typeof(InvalidOperationException))]
-        public void FailFastTest3()
-        {
-            HashTable<int, int> d = new HashTable<int, int>();
-            d[1] = 1;
-            int count = 0;
-            foreach (int i in d.Keys)
-            {
-                d[i] = i;
-                if (count++ != 0)
-                    Assert.Fail("Should not be reached");
-            }
-            Assert.Fail("Should not be reached");
-        }
+        //[Ignore("Pending")][Test, ExpectedException(typeof(InvalidOperationException))]
+        //public void FailFastTest2()
+        //{
+        //    HashTable<int, int> d = new HashTable<int, int>();
+        //    d[1] = 1;
+        //    int count = 0;
+        //    foreach (int i in d.Keys)
+        //    {
+        //        d[i + 1] = i + 1;
+        //        if (count++ != 0)
+        //            Assert.Fail("Should not be reached");
+        //    }
+        //    Assert.Fail("Should not be reached");
+        //}
+        //[Ignore("Pending")][Test, ExpectedException(typeof(InvalidOperationException))]
+        //public void FailFastTest3()
+        //{
+        //    HashTable<int, int> d = new HashTable<int, int>();
+        //    d[1] = 1;
+        //    int count = 0;
+        //    foreach (int i in d.Keys)
+        //    {
+        //        d[i] = i;
+        //        if (count++ != 0)
+        //            Assert.Fail("Should not be reached");
+        //    }
+        //    Assert.Fail("Should not be reached");
+        //}
         [Test]
         public void SerializationTest()
         {
@@ -786,54 +786,54 @@ namespace HashTable
             Assert.AreEqual(12, dictionary["bar"]);
             Assert.IsFalse(dictionary.ContainsKey("foo"));
         }
-        [Ignore("Pending")][Test]
-        public void ICollectionCopyToKeyValuePairArray()
-        {
-            var dictionary = new HashTable<string, int>();
-            dictionary.Add("foo", 42);
-            var collection = dictionary as ICollection;
-            Assert.AreEqual(1, collection.Count);
-            var pairs = new KeyValuePair<string, int>[1];
-            collection.CopyTo(pairs, 0);
-            Assert.AreEqual("foo", pairs[0].Key);
-            Assert.AreEqual(42, pairs[0].Value);
-        }
-        [Ignore("Pending")][Test]
-        public void ICollectionCopyToDictionaryEntryArray()
-        {
-            var dictionary = new HashTable<string, int>();
-            dictionary.Add("foo", 42);
-            var collection = dictionary as ICollection;
-            Assert.AreEqual(1, collection.Count);
-            var entries = new DictionaryEntry[1];
-            collection.CopyTo(entries, 0);
-            Assert.AreEqual("foo", (string)entries[0].Key);
-            Assert.AreEqual(42, (int)entries[0].Value);
-        }
-        [Ignore("Pending")][Test]
-        public void ICollectionCopyToObjectArray()
-        {
-            var dictionary = new HashTable<string, int>();
-            dictionary.Add("foo", 42);
-            var collection = dictionary as ICollection;
-            Assert.AreEqual(1, collection.Count);
-            var array = new object[1];
-            collection.CopyTo(array, 0);
-            var pair = (KeyValuePair<string, int>)array[0];
-            Assert.AreEqual("foo", pair.Key);
-            Assert.AreEqual(42, pair.Value);
-        }
-        [Ignore("Pending")][Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ICollectionCopyToInvalidArray()
-        {
-            var dictionary = new HashTable<string, int>();
-            dictionary.Add("foo", 42);
-            var collection = dictionary as ICollection;
-            Assert.AreEqual(1, collection.Count);
-            var array = new int[1];
-            collection.CopyTo(array, 0);
-        }
+        //[Ignore("Pending")][Test]
+        //public void ICollectionCopyToKeyValuePairArray()
+        //{
+        //    var dictionary = new HashTable<string, int>();
+        //    dictionary.Add("foo", 42);
+        //    var collection = dictionary as ICollection;
+        //    Assert.AreEqual(1, collection.Count);
+        //    var pairs = new KeyValuePair<string, int>[1];
+        //    collection.CopyTo(pairs, 0);
+        //    Assert.AreEqual("foo", pairs[0].Key);
+        //    Assert.AreEqual(42, pairs[0].Value);
+        //}
+        //[Ignore("Pending")][Test]
+        //public void ICollectionCopyToDictionaryEntryArray()
+        //{
+        //    var dictionary = new HashTable<string, int>();
+        //    dictionary.Add("foo", 42);
+        //    var collection = dictionary as ICollection;
+        //    Assert.AreEqual(1, collection.Count);
+        //    var entries = new DictionaryEntry[1];
+        //    collection.CopyTo(entries, 0);
+        //    Assert.AreEqual("foo", (string)entries[0].Key);
+        //    Assert.AreEqual(42, (int)entries[0].Value);
+        //}
+        //[Ignore("Pending")][Test]
+        //public void ICollectionCopyToObjectArray()
+        //{
+        //    var dictionary = new HashTable<string, int>();
+        //    dictionary.Add("foo", 42);
+        //    var collection = dictionary as ICollection;
+        //    Assert.AreEqual(1, collection.Count);
+        //    var array = new object[1];
+        //    collection.CopyTo(array, 0);
+        //    var pair = (KeyValuePair<string, int>)array[0];
+        //    Assert.AreEqual("foo", pair.Key);
+        //    Assert.AreEqual(42, pair.Value);
+        //}
+        //[Ignore("Pending")][Test]
+        //[ExpectedException(typeof(ArgumentException))]
+        //public void ICollectionCopyToInvalidArray()
+        //{
+        //    var dictionary = new HashTable<string, int>();
+        //    dictionary.Add("foo", 42);
+        //    var collection = dictionary as ICollection;
+        //    Assert.AreEqual(1, collection.Count);
+        //    var array = new int[1];
+        //    collection.CopyTo(array, 0);
+        //}
         [Test]
         public void ValuesCopyToObjectArray()
         {
@@ -986,66 +986,66 @@ namespace HashTable
         //    ICollection c = d.Values;
         //    c.CopyTo(new MyClass[1], 0);
         //}
-        [Ignore("Pending")][Test] // bug 474009
-        public void DeserializeEmptyDictionary()
-        {
-            // contains a HashTable<string, int> with Count = 0
-            // serialized with MS.NET 3.5
-            string data =
-            @"AAEAAAD/////AQAAAAAAAAAEAQAAAOEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuRGljdGlv
-bmFyeWAyW1tTeXN0ZW0uU3RyaW5nLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJl
-PW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldLFtTeXN0ZW0uSW50MzIs
-IG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9r
-ZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAwAAAAdWZXJzaW9uCENvbXBhcmVyCEhhc2hTaXplAAMACJIB
-U3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuR2VuZXJpY0VxdWFsaXR5Q29tcGFyZXJgMVtbU3lz
-dGVtLlN0cmluZywgbXNjb3JsaWIsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQ
-dWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0IAAAAAAkCAAAAAAAAAAQCAAAAkgFTeXN0
-ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5HZW5lcmljRXF1YWxpdHlDb21wYXJlcmAxW1tTeXN0ZW0u
-U3RyaW5nLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1Ymxp
-Y0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldXQAAAAAL";
-            var stream = new MemoryStream(Convert.FromBase64String(data));
-            var fmt = new BinaryFormatter();
-            var dict = (HashTable<string, int>)fmt.Deserialize(stream);
-            Assert.AreEqual(0, dict.Count);
-        }
-        [Ignore("Pending")][Test]
-        public void DeserializeNonEmptyDictionary()
-        {
-            // contains a HashTable<string, int> with Count = 2
-            // and dict [i.ToString()] == i for each i.
-            // serialized with MS.NET 3.5
-            string data =
-            @"AAEAAAD/////AQAAAAAAAAAEAQAAAOEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuRGljdGlv
-bmFyeWAyW1tTeXN0ZW0uU3RyaW5nLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJl
-PW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldLFtTeXN0ZW0uSW50MzIs
-IG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9r
-ZW49Yjc3YTVjNTYxOTM0ZTA4OV1dBAAAAAdWZXJzaW9uCENvbXBhcmVyCEhhc2hTaXplDUtleVZh
-bHVlUGFpcnMAAwADCJIBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuR2VuZXJpY0VxdWFsaXR5
-Q29tcGFyZXJgMVtbU3lzdGVtLlN0cmluZywgbXNjb3JsaWIsIFZlcnNpb249Mi4wLjAuMCwgQ3Vs
-dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0I5QFTeXN0ZW0u
-Q29sbGVjdGlvbnMuR2VuZXJpYy5LZXlWYWx1ZVBhaXJgMltbU3lzdGVtLlN0cmluZywgbXNjb3Js
-aWIsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdh
-NWM1NjE5MzRlMDg5XSxbU3lzdGVtLkludDMyLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBD
-dWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldXVtdAgAAAAkC
-AAAAAwAAAAkDAAAABAIAAACSAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkdlbmVyaWNFcXVh
-bGl0eUNvbXBhcmVyYDFbW1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAs
-IEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAAAAAAcD
-AAAAAAEAAAACAAAAA+MBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuS2V5VmFsdWVQYWlyYDJb
-W1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAsIEN1bHR1cmU9bmV1dHJh
-bCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV0sW1N5c3RlbS5JbnQzMiwgbXNjb3Js
-aWIsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdh
-NWM1NjE5MzRlMDg5XV0E/P///+MBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuS2V5VmFsdWVQ
-YWlyYDJbW1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAsIEN1bHR1cmU9
-bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV0sW1N5c3RlbS5JbnQzMiwg
-bXNjb3JsaWIsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tl
-bj1iNzdhNWM1NjE5MzRlMDg5XV0CAAAAA2tleQV2YWx1ZQEACAYFAAAAATAAAAAAAfr////8////
-BgcAAAABMQEAAAAL";
-            var stream = new MemoryStream(Convert.FromBase64String(data));
-            var fmt = new BinaryFormatter();
-            var dict = (HashTable<string, int>)fmt.Deserialize(stream);
-            Assert.AreEqual(2, dict.Count);
-            for (int i = 0; i < dict.Count; i++)
-                Assert.AreEqual(i, dict[i.ToString()]);
-        }
+//        [Ignore("Pending")][Test] // bug 474009
+//        public void DeserializeEmptyDictionary()
+//        {
+//            // contains a HashTable<string, int> with Count = 0
+//            // serialized with MS.NET 3.5
+//            string data =
+//            @"AAEAAAD/////AQAAAAAAAAAEAQAAAOEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuRGljdGlv
+//bmFyeWAyW1tTeXN0ZW0uU3RyaW5nLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJl
+//PW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldLFtTeXN0ZW0uSW50MzIs
+//IG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9r
+//ZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAwAAAAdWZXJzaW9uCENvbXBhcmVyCEhhc2hTaXplAAMACJIB
+//U3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuR2VuZXJpY0VxdWFsaXR5Q29tcGFyZXJgMVtbU3lz
+//dGVtLlN0cmluZywgbXNjb3JsaWIsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQ
+//dWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0IAAAAAAkCAAAAAAAAAAQCAAAAkgFTeXN0
+//ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5HZW5lcmljRXF1YWxpdHlDb21wYXJlcmAxW1tTeXN0ZW0u
+//U3RyaW5nLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1Ymxp
+//Y0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldXQAAAAAL";
+//            var stream = new MemoryStream(Convert.FromBase64String(data));
+//            var fmt = new BinaryFormatter();
+//            var dict = (HashTable<string, int>)fmt.Deserialize(stream);
+//            Assert.AreEqual(0, dict.Count);
+//        }
+//        [Ignore("Pending")][Test]
+//        public void DeserializeNonEmptyDictionary()
+//        {
+//            // contains a HashTable<string, int> with Count = 2
+//            // and dict [i.ToString()] == i for each i.
+//            // serialized with MS.NET 3.5
+//            string data =
+//            @"AAEAAAD/////AQAAAAAAAAAEAQAAAOEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuRGljdGlv
+//bmFyeWAyW1tTeXN0ZW0uU3RyaW5nLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJl
+//PW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldLFtTeXN0ZW0uSW50MzIs
+//IG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9r
+//ZW49Yjc3YTVjNTYxOTM0ZTA4OV1dBAAAAAdWZXJzaW9uCENvbXBhcmVyCEhhc2hTaXplDUtleVZh
+//bHVlUGFpcnMAAwADCJIBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuR2VuZXJpY0VxdWFsaXR5
+//Q29tcGFyZXJgMVtbU3lzdGVtLlN0cmluZywgbXNjb3JsaWIsIFZlcnNpb249Mi4wLjAuMCwgQ3Vs
+//dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0I5QFTeXN0ZW0u
+//Q29sbGVjdGlvbnMuR2VuZXJpYy5LZXlWYWx1ZVBhaXJgMltbU3lzdGVtLlN0cmluZywgbXNjb3Js
+//aWIsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdh
+//NWM1NjE5MzRlMDg5XSxbU3lzdGVtLkludDMyLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBD
+//dWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldXVtdAgAAAAkC
+//AAAAAwAAAAkDAAAABAIAAACSAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkdlbmVyaWNFcXVh
+//bGl0eUNvbXBhcmVyYDFbW1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAs
+//IEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAAAAAAcD
+//AAAAAAEAAAACAAAAA+MBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuS2V5VmFsdWVQYWlyYDJb
+//W1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAsIEN1bHR1cmU9bmV1dHJh
+//bCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV0sW1N5c3RlbS5JbnQzMiwgbXNjb3Js
+//aWIsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdh
+//NWM1NjE5MzRlMDg5XV0E/P///+MBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuS2V5VmFsdWVQ
+//YWlyYDJbW1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTIuMC4wLjAsIEN1bHR1cmU9
+//bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV0sW1N5c3RlbS5JbnQzMiwg
+//bXNjb3JsaWIsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tl
+//bj1iNzdhNWM1NjE5MzRlMDg5XV0CAAAAA2tleQV2YWx1ZQEACAYFAAAAATAAAAAAAfr////8////
+//BgcAAAABMQEAAAAL";
+//            var stream = new MemoryStream(Convert.FromBase64String(data));
+//            var fmt = new BinaryFormatter();
+//            var dict = (HashTable<string, int>)fmt.Deserialize(stream);
+//            Assert.AreEqual(2, dict.Count);
+//            for (int i = 0; i < dict.Count; i++)
+//                Assert.AreEqual(i, dict[i.ToString()]);
+//        }
     }
 }
