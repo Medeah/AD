@@ -7,11 +7,13 @@ public class RedBlackTreeTest
 {
     ISortedDictionary<int, int> t = null;
     ISortedDictionary<string, int> t2 = null;
+    RedBlackTree<int,int> t3 = null;
 
     public RedBlackTreeTest()
     {
         t = new RedBlackTree<int, int>();
         t2 = new RedBlackTree<string, int>();
+        t3 = new RedBlackTree<int, int>();
     }
 
     [Fact]
@@ -197,7 +199,7 @@ public class RedBlackTreeTest
             var num = rng.Next(25, 75);
             t[num] = num;
         }
-        
+
         for (int i = 0; i < 50; i++)
         {
             t[rng.Next(25, 75)] = rng.Next(-100, 200);
@@ -212,4 +214,28 @@ public class RedBlackTreeTest
         Assert.Equal(100, t.Maximum().Key);
         Assert.Equal(1, t[50]);
     }
+
+    [Fact]
+    public void RBpropertiesEmpty()
+    {
+        Assert.True(t3.BlackHeight());
+        Assert.True(t3.BlackRoot());
+        Assert.True(t3.RedHasBlackChildren());
+    }
+
+    [Fact]
+    public void RBpropertiesSimple()
+    {
+        t3.Insert(41, 1);
+        t3.Insert(38, 1);
+        t3.Insert(31, 1);
+        t3.Insert(12, 1);
+        t3.Insert(19, 1);
+        t3.Insert(8, 1);
+        Assert.True(t3.BlackHeight());
+        Assert.True(t3.BlackRoot());
+        Assert.True(t3.RedHasBlackChildren());
+    }
+
+
 }
