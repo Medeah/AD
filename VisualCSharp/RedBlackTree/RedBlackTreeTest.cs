@@ -237,5 +237,19 @@ public class RedBlackTreeTest
         Assert.True(t3.RedHasBlackChildren());
     }
 
-
+    [Fact]
+    public void RBpropertiesDelete()
+    {
+        t3.Insert(41, 1);
+        t3.Insert(38, 1);
+        t3.Insert(31, 1);
+        t3.Insert(12, 1);
+        t3.Insert(19, 1);
+        t3.Insert(8, 1);
+        t3.Delete(12);
+        Assert.True(t3.BlackHeight());
+        Assert.True(t3.BlackRoot());
+        Assert.True(t3.RedHasBlackChildren());
+    }
+    // Probably needs some more tests
 }

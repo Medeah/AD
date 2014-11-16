@@ -147,7 +147,8 @@ namespace RedBlackTree
             RBInsertFixup(z);
         }
 
-        private void RBInsertFixup(Node z) {
+        private void RBInsertFixup(Node z)
+        {
             while (z.P.Color == Color.Red)
             {
                 if (z.P == z.P.P.Left)
@@ -212,26 +213,104 @@ namespace RedBlackTree
             {
                 u.P.Right = v;
             }
-            if (v != nil)
+            v.P = u.P;
+        }
+
+        private void RBDeleteFixup(Node x)
+        {
+            while (x != root && x.Color == Color.Black)
             {
-                v.P = u.P;
+                if (x == x.P.Left)
+                {
+                    var w = x.P.Right;
+                    if (w.Color == Color.Red)
+                    {
+                        w.Color = Color.Black;
+                        x.P.Color = Color.Red;
+                        LeftRotate(x.P);
+                        w = x.P.Right;
+                    }
+                    if (w.Left.Color == Color.Black && w.Right.Color == Color.Black)
+                    {
+                        w.Color = Color.Red;
+                        x = x.P;
+                    }
+                    else
+                    {
+                        if (w.Right.Color == Color.Black)
+                        {
+                            w.Left.Color = Color.Black;
+                            w.Color = Color.Red;
+                            RightRotate(w);
+                            w = x.P.Right;
+                        }
+                        w.Color = x.P.Color;
+                        x.P.Color = Color.Black;
+                        w.Right.Color = Color.Black;
+                        LeftRotate(x.P);
+                        x = root;
+                    }
+                }
+                else
+                {
+                    var w = x.P.Left;
+                    if (w.Color == Color.Red)
+                    {
+                        w.Color = Color.Black;
+                        x.P.Color = Color.Red;
+                        RightRotate(x.P);
+                        w = x.P.Left;
+                    }
+                    if (w.Right.Color == Color.Black && w.Left.Color == Color.Black)
+                    {
+                        w.Color = Color.Red;
+                        x = x.P;
+                    }
+                    else
+                    {
+                        if (w.Left.Color == Color.Black)
+                        {
+                            w.Right.Color = Color.Black;
+                            w.Color = Color.Red;
+                            LeftRotate(w);
+                            w = x.P.Left;
+                        }
+                        w.Color = x.P.Color;
+                        x.P.Color = Color.Black;
+                        w.Left.Color = Color.Black;
+                        RightRotate(x.P);
+                        x = root;
+                    }
+                }
             }
+            x.Color = Color.Black;
         }
 
         private void TreeDelete(Node z)
         {
+            var y = z;
+            var yOriginalColor = y.Color;
+            Node x;
             if (z.Left == nil)
             {
+                x = z.Right;
                 Transplant(z, z.Right);
             }
             else if (z.Right == nil)
             {
+                x = z.Left;
                 Transplant(z, z.Left);
             }
             else
             {
-                var y = TreeMinimum(z.Right);
-                if (y.P != z)
+                y = TreeMinimum(z.Right);
+                yOriginalColor = y.Color;
+                x = y.Right;
+                if (y.P == z)
+                {
+                    x.P = y;
+                }
+                else
                 {
                     Transplant(y, y.Right);
                     y.Right = z.Right;
@@ -240,6 +319,11 @@ namespace RedBlackTree
                 Transplant(z, y);
                 y.Left = z.Left;
                 y.Left.P = y;
+                y.Color = z.Color;
+            }
+            if (yOriginalColor == Color.Black)
+            {
+                RBDeleteFixup(x);
             }
         }
 
@@ -414,8 +498,8 @@ namespace RedBlackTree
 
         public bool RedHasBlackChildren()
         {
-            
-            for (var curr = TreeMinimum(root);curr != nil;curr = TreeSuccessor(curr))
+
+            for (var curr = TreeMinimum(root); curr != nil; curr = TreeSuccessor(curr))
             {
                 if (curr.Color == Color.Red && curr.Left.Color == Color.Red || curr.Right.Color == Color.Red)
                 {
@@ -428,7 +512,7 @@ namespace RedBlackTree
         // Black depth of a node
         private int bd(Node x)
         {
-            
+
             var count = 0;
             for (var curr = x; curr != nil; curr = curr.P)
             {
@@ -439,9 +523,9 @@ namespace RedBlackTree
             }
             return count;
         }
-             
+
         public bool BlackHeight()
-        {            
+        {
             var rootHeight = -1;
             for (var curr = TreeMinimum(root); curr != nil; curr = TreeSuccessor(curr))
             {
