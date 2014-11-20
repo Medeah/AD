@@ -19,7 +19,7 @@ function opti(costFunc, maxSubSize) {
 /// [costFunc](y, x, A) should return the cost of the subproblem given:
 ///   subproblem size [y]
 ///   a choice of [x]
-///   an array A of all the optimised costs for all the subproblems with size smaller than y
+///   an array [A] of all the optimised costs for all the subproblems with size smaller than y
 /// [maxSubSize] is the biggest subproblem to optimise
   var r = new Array(maxSubSize + 1)
   r[0] = costFunc(0)
